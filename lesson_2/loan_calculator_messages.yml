@@ -1,0 +1,7 @@
+welcome: "Welcome to our Online Car Loan Calculator"
+loan_amount: "Please enter your loan amount in $:"
+wrong_number: "That does not seem like a right number, please go again..."
+apr: "Please enter your annual percentage rate in %:"
+loan_duration: "Please enter your loan duration in years:"
+go_again: "Would you like to go again? If yes, enter 'Y'"
+bye: "Thank you for using our tool. Have a great day!"
