@@ -68,15 +68,15 @@ def display_results(player, computer)
   end
 end
 
-def update_scores(player, computer, player_count, comp_count)
+def update_scores(player, computer, user_count, computer_count)
   if GAME_RULES[player].include?(computer)
-    result = player_count.to_i + 1
-    player_count.clear
-    player_count << result.to_s
+    result = user_count.to_i + 1
+    user_count.clear
+    user_count << result.to_s
   elsif GAME_RULES[computer].include?(player)
-    result = comp_count.to_i + 1
-    comp_count.clear
-    comp_count << result.to_s
+    result = computer_count.to_i + 1
+    computer_count.clear
+    computer_count << result.to_s
   end
 end
 
