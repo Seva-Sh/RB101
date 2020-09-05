@@ -11,7 +11,7 @@ def prompt(msg)
   puts "=> #{msg}"
 end
 
-def welcome
+def display_welcome
   system 'clear'
   prompt "Welcome! You are about to play some Tic Tac Toe!!"
   prompt "The first player to get to 5 wins, gets to be the victorious one!!!"
@@ -165,7 +165,7 @@ def joinor(brd, delimiter = ', ', join_word = 'or')
   end
 end
 
-welcome
+display_welcome
 loop do
   board = initialize_board
   current_player = choose_player
