@@ -1,0 +1,52 @@
+# Consider the word "abode". We can see that the letter a is in 
+# position 1 and b is in position 2. In the alphabet, a and b are also 
+# in positions 1 and 2. Notice also that d and e in abode occupy the positions 
+# they would occupy in the alphabet, which are positions 4 and 5.
+
+# Given an array of words, return an array of the number of letters that occupy 
+# their positions in the alphabet for each word. For example,
+
+# solve(["abode","ABc","xyzD"]) = [4, 3, 1]
+# See test cases for more examples.
+
+# Input will consist of alphabet characters, both uppercase and lowercase. 
+# No spaces.
+
+# Good luck!
+
+=begin 
+
+Input: array of strings
+Output: array of integers
+
+Algorithm: 
+Build an array of a lowercase alphabet
+Iterate over each word in an array and during each iteration
+  Iterate over each character,
+  check its position in the string against the position of the same char in
+  the alphabet + 1
+  if match then count it, if no then skip
+
+=end
+
+ALPH = ('a'..'z').to_a
+
+def solve(arr)
+  counts = []
+  arr.each do |word|
+    count = 0
+    word = word.downcase.chars
+    0.upto(word.size - 1) do |idx|
+      count += 1 if word[idx] == ALPH[idx]
+
+      counts << count if idx == word.size - 1
+    end
+  end
+  counts
+end
+
+p solve(["abode","ABc","xyzD"]) == [4,3,1]
+p solve(["abide","ABc","xyz"]) == [4,3,0]
+p solve(["IAMDEFANDJKL","thedefgh","xyzDEFghijabc"]) == [6,5,7]
+p solve(["encode","abc","xyzD","ABmD"]) == [1, 3, 1, 3]
+

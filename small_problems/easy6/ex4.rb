@@ -1,30 +1,30 @@
-# Write a method that takes a string of words separated by spaces
-#
-# Returns a string in which the first and last letters of every word are swapped
+# Write a method that takes an array as an argument
+# Reverses its elements in place
+# Return value should be the same array object
 
-def swap(str)
-  array = str.split.map do |word|
-    word[0], word[-1] = word[-1], word[0]
-    word
+def reverse!(arr)
+  arr.size.times do |n|
+    arr.unshift(arr.delete_at(n))
   end
-  array.join(' ')
+  arr
 end
 
-# def swap(str)
-#   answer = ''
-#   str.split.each do |word|
-#     if word.length > 1
-#       first_letter = word[0]
-#       last_letter = word[-1]
-#       word.delete_suffix!(last_letter)
-#       word.delete_prefix!(first_letter)
-#       word = last_letter + word + first_letter
-#     end
-#     answer += word + ' '
-#   end
-#   answer.strip
-# end
+list = [1,2,3,4]
+p result = reverse!(list)
+list == [4, 3, 2, 1]
+p list.object_id == result.object_id
+#
+list = %w(a b e d c)
+r =  reverse!(list)
+list == ["c", "d", "e", "b", "a"]
+p list.object_id
+p r.object_id
 
-p swap('Oh what a wonderful day it is') == 'hO thaw a londerfuw yad ti si'
-p swap('Abcde') == 'ebcdA'
-p swap('a') == 'a'
+
+list = ['abc']
+p reverse!(list) == ["abc"]
+list == ["abc"]
+
+list = []
+p reverse!(list) == []
+list == []

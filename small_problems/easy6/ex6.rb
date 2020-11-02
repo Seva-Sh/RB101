@@ -1,23 +1,21 @@
-# Write a method that takes a string with one or more space separated words
+# Write a method that takes two arrays as arguments
 #
-# Returns a hash that shows the number of words of different sizes
-# Create a hash
-# Split string into array, count length, insert length and initialize a count
+# Returns an array that contains all of the values from the argument arrays
+# No duplicates
 
-def word_sizes(str)
-  words_by_sizes = {}
-
-  str.split.each do |word|
-    if words_by_sizes.key?(word.size)
-      words_by_sizes[word.size] += 1
-    else
-      words_by_sizes[word.size] = 1
-    end
-  end
-  words_by_sizes
+def merge(arr1, arr2)
+  return (arr1 + arr2).uniq
 end
 
-p word_sizes('Four score and seven.')
-p word_sizes('Hey diddle diddle, the cat and the fiddle!')
-p word_sizes("What's up doc?")
-p word_sizes('') 
+def merge_two(arr1, arr2)
+  arr2.each do |el|
+    arr1.include?(el) ? next : arr1 << el
+  end
+  arr1
+end
+
+def merge(array_1, array_2)
+  array_1 | array_2
+end
+
+p merge([1, 3, 5], [3, 6, 9])

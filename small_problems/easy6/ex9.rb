@@ -1,29 +1,26 @@
-# Write a method that takes a string argument
+# Write a method that takes an array and a search value as arguments
 #
-# Returns a new string that contains
-# the value of the original string with all consecutive duplicate characters
-# collapsed into a single character
+# Return true if value is in array and false otherwise
 
-# def crunch(str)
-#   result_array = []
-#   str.chars do |char|
-#     result_array << char unless result_array.last == char
-#   end
-#   result_array.join
-# end
-
-def crunch(text)
-  index = 0
-  crunch_text = ''
-  while index <= text.length - 1
-    crunch_text << text[index] unless text[index] == text[index + 1]
-    index += 1
+def include?(arr, value)
+  arr.each do |el|
+    return true if value == el
   end
-  crunch_text
+  return false
 end
 
-p crunch('ddaaiillyy ddoouubbllee')
-p crunch('4444abcabccba')
-p crunch('ggggggggggggggg')
-p crunch('a')
-p crunch('')
+p include?([1,2,3,4,5], 3) == true
+p include?([1,2,3,4,5], 6) == false
+p include?([], 3) == false
+p include?([nil], nil) == true
+p include?([], nil) == false
+
+def include?(array, value)
+  !!array.find_index(value)
+end
+A slightly harder way
+
+def include?(array, value)
+  array.each { |element| return true if value == element }
+  false
+end

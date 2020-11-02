@@ -1,23 +1,29 @@
-# Write a method that takes two strings as arguments
-#
-# determines the longest of the two strings
-# then returns the result of concatenating the
-# shorter string + longer string + shorter string
+# Write a method that takes an array as an argument
+# Returns two arrays (as a pair of nested arrays)
+# that contain the first half and second half of the original array
+# if odd num of elements middle element should be in the first array
 
-def word_sizes(str)
-  words_by_sizes = Hash.new(0)
-  str.gsub!(/[^a-z ]/i, '')
-  p str
-  str.split.each do |word|
-    words_by_sizes[word.size] += 1
+def halvsies(arr)
+  new_arr = [[], []]
+  if arr.size.odd?
+    new_arr[0] = arr[0..(arr.size / 2)]
+    new_arr[1] = arr[(arr.size / 2) + 1..-1]
+    p new_arr
+  else
+    new_arr[0] = arr[0..(arr.size / 2) - 1]
+    new_arr[1] = arr[(arr.size / 2)..-1]
+    p new_arr
   end
-  words_by_sizes
 end
 
-p word_sizes('Four score and seven.') == { 3 => 1, 4 => 1, 5 => 2 }
-p word_sizes('Hey diddle diddle, the cat and the fiddle!') == { 3 => 5, 6 => 3 }
-p word_sizes("What's up doc?") == { 5 => 1, 2 => 1, 3 => 1 }
-p word_sizes('') == {}
+def halvsies(array)
+  middle = (array.size / 2.0).ceil
+  first_half = array.slice(0, middle)
+  second_half = array.slice(middle, array.size - middle)
+  [first_half, second_half]
+end
 
-# or
-clean_word = word.delete('^A-Za-z')
+p halvsies([1, 2, 3, 4])
+p halvsies([1, 5, 2, 4, 3])
+p halvsies([5])
+p halvsies([])

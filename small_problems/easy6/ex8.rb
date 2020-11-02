@@ -1,25 +1,25 @@
-# Write a method that takes an array of integers between 0 and 19
-#
-# Returns an array of those integers sorted based on english words for each number
+# Write a method that finds and returns the duplicate value in the array
 
-WORDED_NUMBERS = %w(
-  zero one two three four five six seven eight nine ten
-  eleven twelve thirteen fourteen fifteen sixteen
-  seventeen eighteen nineteen
-)
-
-def alphabetic_number_sort(array)
-  new_array = []
-  given_array = array.map { |num| WORDED_NUMBERS[num] }
-  sorted = given_array.sort
-  sorted.each do |num|
-    new_array << given_array.index(num)
+def find_dup(arr)
+  value_occurence = Hash.new(0)
+  arr.each do |el|
+    value_occurence[el] += 1
   end
-  new_array
+  value_occurence.key(2)
 end
 
-def alphabetic_number_sort(numbers)
-  numbers.sort_by { |number| WORDED_NUMBERS[number] }
+def find_dup(array)
+  array.find { |element| array.count(element) == 2 }
 end
 
-p alphabetic_number_sort((0..19).to_a)
+p find_dup([1, 5, 3, 1])
+p find_dup([18,  9, 36, 96, 31, 19, 54, 75, 42, 15,
+          38, 25, 97, 92, 46, 69, 91, 59, 53, 27,
+          14, 61, 90, 81,  8, 63, 95, 99, 30, 65,
+          78, 76, 48, 16, 93, 77, 52, 49, 37, 29,
+          89, 10, 84,  1, 47, 68, 12, 33, 86, 60,
+          41, 44, 83, 35, 94, 73, 98,  3, 64, 82,
+          55, 79, 80, 21, 39, 72, 13, 50,  6, 70,
+          85, 87, 51, 17, 66, 20, 28, 26,  2, 22,
+          40, 23, 71, 62, 73, 32, 43, 24,  4, 56,
+          7,  34, 57, 74, 45, 11, 88, 67,  5, 58])
