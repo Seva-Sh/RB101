@@ -29,8 +29,8 @@ Algorithm:
 
 =end
 
-def test(str)
-  1.upto(str.size / 2) do |end_idx|
+def repeated_substring(str)
+  0.upto(str.size / 2) do |end_idx|
     slice = str[0..end_idx]
     repeat_nums = str.size / slice.size
     return true if slice * repeat_nums == str
@@ -38,5 +38,52 @@ def test(str)
   false
 end
 
-p test('abab') == true
-p test('aba') == false
+p repeated_substring('abab') == true
+p repeated_substring('aba') == false
+p repeated_substring('aabaaba') == false
+p repeated_substring('abaababaab') == true
+p repeated_substring('abcabcabcabc') == true
+p repeated_substring('aaaaa') == true
+
+
+=begin 
+
+Problem:
+- We are given an array of strings made only from lowercase letters
+- Return an array of all characters that show up in all strings within the
+  given array (including duplicates)
+- 
+
+Input: arr of words
+Output: arr of letters
+
+Algorithm:
+- First element of the array would be our test string, and we will convert
+  it into an array of unique chars -> 
+- Iterating over each uniq character, 
+    iterate over the remaining word (.each). Upon each iteration,
+    count the number of occurences of that letter, and reassign if needed
+    (to the lowest count out of all words)
+    Append the [current letter] * count to the returning new_arr
+
+- 
+
+=end
+
+def common_chars(arr)
+  new_arr = []
+  test_letters = arr[0].chars.uniq
+  test_letters.each do |letter|
+    count = arr[0].count(letter)
+    arr.each do |word|
+      temp_count = word.count(letter)
+      count = temp_count if temp_count < count 
+    end
+    new_arr += [letter] * count 
+  end
+  new_arr
+end
+
+p common_chars(['bella', 'label', 'roller']) == ['e', 'l', 'l']
+p common_chars(['cool', 'lock', 'cook']) == ['c', 'o']
+p common_chars(['aabbaa', 'cccdddd', 'eeffee', 'ggrrrr']) == []
